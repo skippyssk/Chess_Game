@@ -13,7 +13,7 @@ class pieces():
 class chessboard(pieces):
     def __init__(self):
         pass
-
+    # This prints a new chessboard with pieces.
     def setup_chessboard(self):
         x = " X "
         BK = " BK"
@@ -71,6 +71,7 @@ class chessboard(pieces):
             print("\n")
         return chessboard
 
+    # move_choice takes in 4 variables for locations and sends them to update_chessboard
     def move_choice(self,chessboard):
         move_choice = [0, 0, 0, 0]
         j = 0
@@ -109,3 +110,7 @@ def play():
 
 
 play()
+# enter the row then column of where the piece is
+# to where you want to move the piece.
+# board starts at 0,0 and goes to 7,7
+# type "stop()" to terminate the program.
