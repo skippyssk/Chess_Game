@@ -1,8 +1,6 @@
 import chessLogic
 
-class play():
-    def __init__(self):
-        pass
+
 class pieces():
     def __init__(self):
         pass
@@ -12,7 +10,7 @@ class pieces():
 
     def legal_moves(self):
         pass
-class chessboard(pieces, play):
+class chessboard(pieces):
     def __init__(self):
         pass
 
@@ -56,8 +54,11 @@ class chessboard(pieces, play):
                 user_input_row
             ][user_input_column]
             chessboard[user_input_row][user_input_column] = " X "
-        i = 0
-        j = 0
+
+        # This prints the updated chessboard.
+
+        i = 0; j = 0
+
         print("\n")
         while j <= 7:
             while i <= 7:
@@ -95,16 +96,16 @@ class chessboard(pieces, play):
         user_input_row_going = move_choice[2]
         user_input_column_going = move_choice[3]
 
-        updated_board=self.update_chessboard(user_input_row, user_input_column, user_input_row_going,
+        updated_board= self.update_chessboard(user_input_row, user_input_column, user_input_row_going,
                           user_input_column_going, chessboard)
 
 def play():
     playing=True
     board = chessboard()
-    new_board = board.setup_chessboard()
+    update_board = board.setup_chessboard()
     while playing:
 
-        board.move_choice(new_board)
+        board.move_choice(update_board)
 
 
 play()
