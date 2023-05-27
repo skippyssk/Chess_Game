@@ -6,10 +6,6 @@ class pieces():
     def __init__(self):
         pass
 
-
-
-
-
 def setup_chessboard():
     x = " X "
     BK = " BK"
@@ -29,23 +25,32 @@ def setup_chessboard():
     ]
 
     return chessboard
+import main
 
-chessboard=setup_chessboard()
-
-piece_location_array=[[0 for x in range(8)] for y in range(8)]
-piece_location_array=dict()
-for i in range (len(chessboard)):
-    for j in range (len(chessboard[i])):
-        piece = chessboard[i][j]
-        if piece==' X ':
-            pass
-        else:
-            piece_location_array[i]={(i,j):piece}
-
-print(piece_location_array.keys())
-print(piece_location_array)
+chessboard=main.update_chessboard()
+def piece_location_array(chessboard):
 
 
+    piece_location_array=[[0 for x in range(8)] for y in range(8)]
+
+    for i in range (len(chessboard)):
+        for j in range (len(chessboard[i])):
+            piece = chessboard[i][j]
+            if piece==' X ':
+                piece_location_array[i][j] = piece
+            else:
+
+                piece_location_array[i][j]=piece
+
+    return piece_location_array
+
+
+
+
+"""
+We need to know what's legal for literally every piece all the time.
+
+"""
 
 
 

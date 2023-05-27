@@ -107,8 +107,9 @@ def play():
     while playing:
 
         board.move_choice(update_board)
-
-
+        import pieceLocation
+        pieceLocation.setup_chessboard()
+        pieceLocation.piece_location_array(update_board)
 play()
 # enter the row then column of where the piece is
 # to where you want to move the piece.
