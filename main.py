@@ -44,7 +44,7 @@ SPRITE_SHEET_BLACK = pygame.image.load(
 
 SPRITE_SHEET_MENU = pygame.image.load(os.path.join('Assets', 'GUI', 'buttons.png'))
 
-clicked_piece = None
+clicked_pieces = []
 
 
 # GUI Class
@@ -188,16 +188,16 @@ def display():
 
     chess_board.draw()
 
-    def draw_black():
-        for piece_name, pieces in BLACK_PIECES.items():
-            for piece in pieces:
-                if piece != clicked_piece:
-                    piece.draw()
-
     def draw_white():
         for piece_name, pieces in WHITE_PIECES.items():
             for piece in pieces:
-                if piece != clicked_piece:
+                if piece not in clicked_pieces:
+                    piece.draw()
+
+    def draw_black():
+        for piece_name, pieces in BLACK_PIECES.items():
+            for piece in pieces:
+                if piece not in clicked_pieces:
                     piece.draw()
 
     def draw_ui():
@@ -209,9 +209,8 @@ def display():
     draw_white()
     draw_ui()
 
-    if clicked_piece is not None:
-        clicked_piece.draw()
-        print("yes")
+    for piece in clicked_pieces:
+        piece.draw()
 
     pygame.display.update()
 
@@ -239,7 +238,8 @@ def main():
                                 piece.offset_x = pos[0] - piece.rect.x
                                 piece.offset_y = pos[1] - piece.rect.y
                                 dragged_piece = piece
-                                clicked_piece = piece
+                                if piece not in clicked_pieces:
+                                    clicked_pieces.append(piece)
                     for piece_name, pieces in WHITE_PIECES.items():
                         for piece in pieces:
                             if piece.rect.collidepoint(pos):
@@ -247,7 +247,8 @@ def main():
                                 piece.offset_x = pos[0] - piece.rect.x
                                 piece.offset_y = pos[1] - piece.rect.y
                                 dragged_piece = piece
-                                clicked_piece = piece
+                                if piece not in clicked_pieces:
+                                    clicked_pieces.append(piece)
 
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:  # Left mouse button released
